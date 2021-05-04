@@ -1,16 +1,16 @@
-variable "sub1" {
-  description = "subnet id from vpc"
-}
-variable "sub2" {
-  description = "subnet id from vpc"
-}
-variable "sg_id" {
-  description = "security group id"
+variable "ami_id" {
+  description = "id of the ami"
+  default = "ami-0194c3e07668a7e36"
 }
 variable "instance_type" {
   default = ["t2.micro"]
 }
-variable "ami_type" {
-  description = "Im not sure I want this part."
-  default     = "AL2_x86_64"
+variable "av_zone" {
+  default = "eu-west-2"
+}
+variable "key_name" {
+  default = "tbc"
+}
+variable "net_id" {
+  description = "???"
 }
