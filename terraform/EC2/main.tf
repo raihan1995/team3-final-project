@@ -25,4 +25,3 @@ resource "aws_instance" "jenkins" {
     Name = "jenkins"
   }
 }
-cod
