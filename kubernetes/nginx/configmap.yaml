@@ -5,11 +5,11 @@ metadata:
 data:
   default.conf: |
     server {
-        listen 80;
-        location / {
-            proxy_pass http://frontend:8080;
+      listen 80;
+      location / {
+        proxy_pass http://frontend:8080;
         }
-        location /petclinic {
-            proxy_pass http://backend:9966;
+      location /petclinic {
+        proxy_pass http://backend:9966;
       }
     }

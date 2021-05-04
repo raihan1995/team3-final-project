@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: frontend
-    labels:
-        app: frontend
+  name: frontend
+  labels:
+    app: frontend
 spec:
-    replicas: 2
-    selector:
-        matchlabels:
-            app: frontend
-    template:
-        metadata:
-            name: frontend
-            labels:
-                app: frontend
-        spec:
-            containers:
-            - name: frontend
-              image: spring-petclinic-angular:latest
-              imagePullPolicy: Always
-              ports:
-                 containerPort: 8080
+  replicas: 2
+  selector:
+    matchlabels:
+      app: frontend
+  template:
+    metadata:
+      name: frontend
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: spring-petclinic-angular:latest
+        imagePullPolicy: Always
+        ports:
+          containerPort: 8080
 
