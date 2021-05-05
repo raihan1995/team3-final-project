@@ -1,12 +1,12 @@
 output "vpc_id" {
-    value = aws_vpc.prod-vpc.id
+  value = aws_vpc.myvpc.id
 }
-output "route_id" {
-    value = aws_route_table.prod-route-table.id
+output "route_table_id" {
+  value = aws_route_table.prod-route-table.id
 }
 output "sec_group_id" {
-    value = aws_security_group.allow_web.id
+  value = aws_security_group.web_access.id
 }
-output "internet_gate" {
-    value = aws_internet_gateway.gw
+output "internet_gateway" {
+  value = aws_internet_gateway.gw
 }

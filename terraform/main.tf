@@ -24,4 +24,5 @@ module "subnets" {
 }
 module "VPC" {
   source             = "./vpc"
+  cidr_block         = "0.0.0.0/0"
 }

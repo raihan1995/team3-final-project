@@ -1,4 +1,4 @@
-resource "aws_instance" "docker_instance" {
+resource "aws_instance" "nginx-machine" {
   ami               = var.ami_id
   instance_type     = var.instance_type
   availability_zone = var.av_zone
@@ -12,8 +12,8 @@ resource "aws_instance" "docker_instance" {
     Name = each.key
   }
 }
-resource "aws_instance" "jenkins" {
-  ami               = var.ami_id
+resource "aws_instance" "eks-machine" { # Not sure we need this...
+  ami               = var.ami_id        # If deleting, delete the corresponding output.
   instance_type     = var.instance_type
   availability_zone = var.av_zone
   key_name          = var.key_name
