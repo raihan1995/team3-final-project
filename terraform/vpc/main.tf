@@ -4,7 +4,7 @@ resource "aws_vpc" "myvpc" {
 resource "aws_route_table" "prod-route-table" {
   vpc_id = aws_vpc.myvpc.id
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = vars.cidr_block
     gateway_id = aws_internet_gateway.gate.id
   }
 }

@@ -4,7 +4,7 @@ output "vpc_id" {
 output "route_table_id" {
   value = aws_route_table.prod-route-table.id
 }
-output "sec_group_id" {
+output "security_group_id" {
   value = aws_security_group.web_access.id
 }
 output "internet_gateway" {
