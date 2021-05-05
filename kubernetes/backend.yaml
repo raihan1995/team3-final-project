@@ -4,11 +4,13 @@ metadata:
   name: backend
   labels:
     app: backend
+
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: backend
+  replicas: 2
+
   template:
     metadata:
       name: backend
@@ -17,11 +19,11 @@ spec:
     spec:
       containers:
       - name: backend
-        image: spring-petclinic-rest:latest
+        image: springcommunity/spring-petclinic-rest:latest
         imagePullPolicy: Always
         ports:
-          containerPort: 9966
-
+        - containerPort: 9966
+  
 ---
 apiVersion: v1
 kind: Service
