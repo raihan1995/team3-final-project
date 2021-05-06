@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Testing'){
             steps{
-                sh 'bash ./scripts/backend-test.sh'
+                // sh 'bash ./scripts/backend-test.sh'
                 sh 'bash ./scripts/frontend-test.sh'
             }
         }
@@ -14,17 +14,17 @@ pipeline {
         }
         stage('Push'){
             steps{
-                sh 'docker-compose push'
+                // sh 'docker-compose push'
             }
         }
         stage('Terraform Configuration'){
             steps{
-                sh 'bash ./scripts/terraform.sh'
+                // sh 'bash ./scripts/terraform.sh'
             }
         }
         stage('Deploy App'){
             steps{ 
-                sh 'bash ./scripts/deployapp.sh'
+                // sh 'bash ./scripts/deployapp.sh'
             }
         }
     }
