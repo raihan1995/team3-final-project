@@ -27,13 +27,19 @@ To complete this project to a high standard I will be using various programs, la
 
 ### Initial Assessment
 Before we began the planning of project we first made an initial risk assessment to make sure that we had a solid plan of what issues we might face whilst completing the project. This would then be updated and added to during the process as there may be errors that we hadn't anticipated to begin with.
-![image](https://user-images.githubusercontent.com/79214361/117200846-db199380-ade3-11eb-9f42-89959fcbb197.png)
+
+![risk_assessment1](https://user-images.githubusercontent.com/79214361/117330403-8e8a9280-ae8d-11eb-958d-913a3cfc77f5.png)
+
 
 ### Further Findings
+Whilst we were working through the project, there were certain issues we encountered that we hadn't anticipated at the start. Some of which we managed to amend and got them to run with a little editing, and so we found it useful to document these as to avoid making the same mistakes again in future projects.  
+			
+![risk_assessment2](https://user-images.githubusercontent.com/79214361/117329833-f5f41280-ae8c-11eb-9565-08254c343864.png)
 
 
 ## Planning and Documentation
-Over the duration of this project we planned each of the steps we needed to complete by using a Trello kanban board, which meant that everything is clearly laid out, and meant that it was easy to see what's finished and what's still yet to be finished. By doing this, it will ensure that time is managed well and all tasks will be completed in time.
+Over the duration of this project we planned each of the steps we needed to complete by using a Trello kanban board, which meant that everything is clearly laid out, and meant that it was easy to see what's finished and what's still yet to be finished. By doing this, it will ensure that time is managed well and all tasks will be completed in time.  
+
 ![Trello_board](https://user-images.githubusercontent.com/79214361/117205923-233bb480-adea-11eb-87a8-f13c7fcd684d.png)
 
 Trello Board : https://trello.com/b/gFnT9NGS/project3
@@ -45,8 +51,16 @@ By creating a pipeline diagram it allowed us to get a clearer understanding of w
 
 
 ## Testing
+### Backend Testing:
+
+![image](https://user-images.githubusercontent.com/79214361/117332501-d5798780-ae8f-11eb-818b-0984c68c47e1.png)
+
+### Frontend Testing:
+![image](https://user-images.githubusercontent.com/79214361/117332611-f4781980-ae8f-11eb-8bd8-154026c86d4b.png)
+
 
 ## Conclusion
+To summerise, this project has been challenging and offered up many obstacles that we had to face, many of which presented valuable DevOps experience which emulated a real working environment. It was extremely useful to work as a team as we could utitlise each others strengths and allowed for us to complete tasks more effectively, as we were able to help one another where sections of the project proved difficult. Although parts of the application didn't end up working as we initially intended, this project has been extremely useful in providing oppertunities to troubleshoot existing code, solve deployment issues and apply best practices to our working processes. If we were to attempt this challenge again we would spend more time on configuring Kubernetes and Terraform to work collectively, and less time on testing and trying to get the app to work perfectly for us, as the deployment was more complex and proved to be more difficult.
 
 ## References
 For the most part of this project, any knowledge and skills used had been taught to us by the QA teachers, specifically Vinesh Ghela, Dara Oladapo, Ben Hesketh, Harry Volker, Raji Kolluru, Peter Rhodes and Nathan Forester as well as information from the QA community website and Cloud Academy. On top of this we also used other sources of information on occasion, some of which include:
@@ -54,6 +68,8 @@ For the most part of this project, any knowledge and skills used had been taught
 * https://registry.terraform.io/browse/modules
 * https://docs.nginx.com/nginx/
 * https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+
+On top of this, we also used [this](https://github.com/Kimovi/Spring_PetClinic_DevOps) demo repository,  to help us get an understanding about things such as file structure, an idea of what tools and programs handled each section of the project, and used it for inspiration as to how some of the tasks needed to be handled.
 
 ## Contributers
 
