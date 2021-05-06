@@ -1,13 +1,5 @@
-variable "access_key" {
-  type        = string
-  description = "Enter credentials of aws user with relevent permissions"
-}
-variable "secret_key" {
-  type        = string
-  description = "Enter credentials of aws user with relevent permissions"
-}
-variable "region" {
-  type        = string
-  description = "aws account region"
-  default     = "eu-west-2"
+provider "aws" {
+  region     = "eu-west-2"
+  access_key = ""
+  secret_key = ""
 }

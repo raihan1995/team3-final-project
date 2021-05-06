@@ -1,30 +1,95 @@
-provider "aws" {
-  access_key = var.access_key
-  secret_key = var.secret_key
-  region     = var.region
+resource "aws_iam_role" "eks_cluster" {
+  name = "our_cluster"
+
+  assume_role_policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "eks.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
 }
-module "ec2" {
-  source        = "./ec2"
-  ami_id        = "ami-0194c3e07668a7e36" # "Ubuntu 20.04, eu-west-2"
-  instance_type = "t2.micro"
-  av_zone       = "eu-west-2a"
-  key_name      = "asdf"
-  net_id        = module.subnets.net_id
+POLICY
 }
-module "vpc" {
-  source     = "./vpc"
-  cidr_block = "0.0.0.0/0"
+
+resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  role       = aws_iam_role.eks_cluster.name
 }
-module "subnets" {
-  source            = "./subnets"
-  vpc_id            = module.vpc.vpc_id
-  av_zone           = "eu-west-2a"
-  security_group_id = module.vpc.security_group_id
-  route_table_id    = module.vpc.route_table_id
+
+resource "aws_iam_role_policy_attachment" "AmazonEKSServicePolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+  role       = aws_iam_role.eks_cluster.name
 }
-module "EKS" {
-  source            = "./eks"
-  subnet_id         = module.subnets.subnet_id
-  security_group_id = module.vpc.security_group_id
-  instance_types    = ["t2.micro"] ########################## CHANGE TO SOMETHING BIGGER.
+
+resource "aws_eks_cluster" "aws_eks" {
+  name     = "eks_cluster_final_project"
+  role_arn = aws_iam_role.eks_cluster.arn   
+
+  vpc_config {
+    subnet_ids              = ["subnet-0ea583df138dcf82c", "subnet-0e603838157983158"] ################################# 
+    endpoint_private_access = true
+    endpoint_public_access  = true
+  }
+
+  tags = {
+    Name = "eks_final_project"
+  }
+}
+
+resource "aws_iam_role" "eks_nodes" {
+  name = "node_group"
+
+  assume_role_policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+  role       = aws_iam_role.eks_nodes.name
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEKS_CNI_Policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+  role       = aws_iam_role.eks_nodes.name
+}
+
+resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  role       = aws_iam_role.eks_nodes.name
+}
+
+resource "aws_eks_node_group" "node" {
+  cluster_name    = aws_eks_cluster.aws_eks.name
+  node_group_name = "node_group"
+  node_role_arn   = aws_iam_role.eks_nodes.arn
+  subnet_ids      = ["subnet-0ea583df138dcf82c", "subnet-0e603838157983158"]
+
+  scaling_config {
+    desired_size = 2
+    max_size     = 2
+    min_size     = 2
+  }
+  depends_on = [
+    aws_iam_role_policy_attachment.AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,
+  ]
 }
