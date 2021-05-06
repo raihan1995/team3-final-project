@@ -19,12 +19,12 @@ pipeline {
         }
         stage('Terraform Configuration'){
             steps{
-                sh 'bash ./scripts/terraform.sh'
+                sh 'bash scripts/terraform.sh'
             }
         }
         stage('Deploy App'){
             steps{ 
-                sh 'bash ./scripts/deployapp.sh'
+                sh 'bash scripts/deployapp.sh'
             }
         }
     }
