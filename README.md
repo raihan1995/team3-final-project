@@ -40,7 +40,8 @@ Trello Board : https://trello.com/b/gFnT9NGS/project3
 
 ## CI/CD Pipeline
 By creating a pipeline diagram it allowed us to get a clearer understanding of what each part of the project was doing, and the order in which the pipeline would be functioning. 
-![Pipeline](https://user-images.githubusercontent.com/79214361/117183505-88ce7780-adcf-11eb-9e01-1e47fc7677b5.png)
+![Pipeline](https://user-images.githubusercontent.com/79214361/117265214-e6a0a500-ae4b-11eb-8e54-070bf9cea9e4.png)
+
 
 ## Testing
 
