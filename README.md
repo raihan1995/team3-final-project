@@ -13,15 +13,14 @@ Using what you have learned, you must determine what tools will work best in the
 ## What tools will be used?
 To complete this project to a high standard I will be using various programs, languages and systems and utilise all of the various tools that they offer. Some of which will be:  
 
-|Tools & programs    |Version         |
-|--------------------|----------------|
-|Python              |Version 3.8.5   |
-|Docker              |Version 20.10.5 |
-|Docker-compose      |Version 1.29.0  |
-|Jenkins             |Version 2.287   |
-|Visual Studio Code  |Version 1.55.0  |
-|Terraform           |Version 0.15.1  |
-|Kubernetes          |Version 1.21.0  |
+|Tools               |Tools & programs    |Version         |
+|--------------------|--------------------|----------------|
+|Build tool          |Docker              |Version 20.10.5 |
+|Containerisation    |Docker-compose      |Version 1.29.0  |
+|Automation Tool     |Jenkins             |Version 2.287   |
+|IDE                 |Visual Studio Code  |Version 1.55.0  |
+|Infrastructure tool |Terraform           |Version 0.15.1  |
+|Orchestration tool  |Kubernetes          |Version 1.21.0  |
 
 ## Risk Assessment
 
