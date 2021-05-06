@@ -40,6 +40,7 @@ Trello Board : https://trello.com/b/gFnT9NGS/project3
 
 ## CI/CD Pipeline
 By creating a pipeline diagram it allowed us to get a clearer understanding of what each part of the project was doing, and the order in which the pipeline would be functioning. 
+
 ![Pipeline](https://user-images.githubusercontent.com/79214361/117265214-e6a0a500-ae4b-11eb-8e54-070bf9cea9e4.png)
 
 
@@ -49,9 +50,10 @@ By creating a pipeline diagram it allowed us to get a clearer understanding of w
 
 ## References
 For the most part of this project, any knowledge and skills used had been taught to us by the QA teachers, specifically Vinesh Ghela, Dara Oladapo, Ben Hesketh, Harry Volker, Raji Kolluru, Peter Rhodes and Nathan Forester as well as information from the QA community website and Cloud Academy. On top of this we also used other sources of information on occasion, some of which include:
-*https://registry.terraform.io/browse/modules
-*https://docs.nginx.com/nginx/
-*https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+
+* https://registry.terraform.io/browse/modules
+* https://docs.nginx.com/nginx/
+* https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 
 ## Contributers
 
