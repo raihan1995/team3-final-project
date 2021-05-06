@@ -3,8 +3,8 @@ pipeline {
     stages{
         stage('Testing'){
             steps{
-                // sh 'bash ./scripts/backend-test.sh'
-                sh 'bash ./scripts/frontend-test.sh'
+                echo 'test stage' // sh 'bash ./scripts/backend-test.sh'
+                // sh 'bash ./scripts/frontend-test.sh'
             }
         }
         stage('Build'){
