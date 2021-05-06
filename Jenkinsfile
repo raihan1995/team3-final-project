@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Terraform Configuration'){
             steps{
-                sh 'bash scripts/terraform.sh'
+                sh 'bash cd ~ && cd .. && cat ubuntu/team3-final-project/scripts/terraform.sh'
             }
         }
         stage('Deploy App'){
