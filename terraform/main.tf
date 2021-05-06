@@ -1,7 +1,7 @@
 provider "aws" {
   access_key = var.access_key
   secret_key = var.secret_key
-  region     = "eu-west-2"
+  region     = var.region
 }
 module "ec2" {
   source        = "./ec2"
@@ -11,16 +11,16 @@ module "ec2" {
   key_name      = "asdf"
   net_id        = module.subnets.net_id
 }
+module "vpc" {
+  source     = "./vpc"
+  cidr_block = "0.0.0.0/0"
+}
 module "subnets" {
   source            = "./subnets"
   vpc_id            = module.vpc.vpc_id
   av_zone           = "eu-west-2a"
   security_group_id = module.vpc.security_group_id
   route_table_id    = module.vpc.route_table_id
-}
-module "VPC" {
-  source     = "./vpc"
-  cidr_block = "0.0.0.0/0"
 }
 module "EKS" {
   source            = "./eks"

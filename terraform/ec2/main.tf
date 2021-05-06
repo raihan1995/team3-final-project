@@ -8,9 +8,6 @@ resource "aws_instance" "nginx-machine" {
     device_index         = 0
     network_interface_id = var.net_id
   }
-  tags = {
-    Name = each.key
-  }
 }
 resource "aws_instance" "eks-machine" { # Not sure we need this...
   ami               = var.ami_id        # If deleting, delete the corresponding output.
@@ -20,8 +17,5 @@ resource "aws_instance" "eks-machine" { # Not sure we need this...
   network_interface {
     device_index         = 0
     network_interface_id = var.net_id
-  }
-  tags {
-    Name = "jenkins"
   }
 }
