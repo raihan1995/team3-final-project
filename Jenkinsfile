@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Build'){
             steps{
-                sh 'docker-compose build'
+                sh 'sudo docker-compose build'
             }
         }
         stage('Push'){
             steps{
-                echo 'docker-compose push'// sh 'docker-compose push'
+                echo 'sudo docker-compose push'
             }
         }
         stage('Terraform Configuration'){
