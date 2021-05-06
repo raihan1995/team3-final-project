@@ -1,31 +1,9 @@
-#   BACKEND DOCKER COMMANDS FROM README
-#     docker run --name mysql-petclinic -e MYSQL_ROOT_PASSWORD=petclinic -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:5.7.8
-#     docker run -p 9966:9966 springcommunity/spring-petclinic-rest
-
-#   FRONTEND DOCKER COMMANDS FROM README
-#     docker build -t spring-petclinic-angular:latest .
-#     docker run --rm -p 8080:8080 spring-petclinic-angular:latest
-
 version: "3.8"
 services:
-  mysql-petclinic:
-    container_name: mysql-petclinic
-    build: ./spring-petclinic-rest-master/src/main/resources/db
-    #image: mysql:5.7.8
-    ports:
-    - target: 3306
-      published: 3306
-      protocol: tcp
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-    # ports:
-    #   - 3306:3306
   spring-petclinic-rest:
     container_name: spring-petclinic-rest
-    image: springcommunity/spring-petclinic-rest:latest
-    depends_on:
-      - mysql-petclinic
+    image: raihan95/spring-petclinic-rest:latest
+    build: ./spring-petclinic-rest-master
     ports:
     - target: 9966
       published: 9966
@@ -33,10 +11,8 @@ services:
 
   spring-petclinic-angular:
     container_name: spring-petclinic-angular
-    image: spring-petclinic-angular:latest
+    image: raihan95/spring-petclinic-angular:latest
     build: ./spring-petclinic-angular-master
-    depends_on:
-      - spring-petclinic-rest
     ports:
     - target: 8080
       published: 80
