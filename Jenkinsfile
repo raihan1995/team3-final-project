@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Push'){
             steps{
-                sh 'ls && pwd && cat scripts/terraform.sh' //'sudo docker-compose push'
+                sh 'ls && pwd && cd scripts && ls' //'sudo docker-compose push'
             }
         }
         stage('Terraform Configuration'){
