@@ -14,12 +14,12 @@ pipeline {
         }
         stage('Push'){
             steps{
-                sh 'echo pwd' //'sudo docker-compose push'
+                sh 'ls && echo pwd' //'sudo docker-compose push'
             }
         }
         stage('Terraform Configuration'){
             steps{
-                sh 'bash cd ~ && cd .. && cat ubuntu/team3-final-project/scripts/terraform.sh'
+                sh 'bash scripts/terraform.sh'
             }
         }
         stage('Deploy App'){
