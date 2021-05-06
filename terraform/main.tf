@@ -1,5 +1,6 @@
 resource "aws_iam_role" "eks_cluster" {
-  name = "our_cluster"
+  #name = "our_cluster"
+  name = "final_project_cluster"
 
   assume_role_policy = <<POLICY
 {
@@ -43,7 +44,8 @@ resource "aws_eks_cluster" "aws_eks" {
 }
 
 resource "aws_iam_role" "eks_nodes" {
-  name = "node_group"
+  #name = "node_group"
+  name = "final_project_node_group"
 
   assume_role_policy = <<POLICY
 {
