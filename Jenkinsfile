@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Push'){
             steps{
-                echo 'sudo docker-compose push'
+                echo pwd //'sudo docker-compose push'
             }
         }
         stage('Terraform Configuration'){
