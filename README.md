@@ -5,10 +5,29 @@ For this final project, we had to work as a team to deploy a pre-made app as eff
 
 A secondary focus of this project was to experience working together as a team and managing the workload equally, as this is an invaluable DevOps trait that will not only help to prepare us for interviews, but it will also prepare us for future employment.
 
-## Requirements
+## Project Brief
 You will need to plan, design and implement a solution for automating the development workflows and deployments of this application. As part of your final deliverable you will need to discuss the project in a presentation and demonstrate these workflows.
 
 Using what you have learned, you must determine what tools will work best in the deployment of the application, how to test the application in a working enviroment before pushing any changes to the main branch, how to automatically build changes after they are pushed to the repository and assess the cost of running your application and what steps you can put in place to reduce them.
+
+## Installation and Setup
+In order to build the Docker images and containerise them using a Linux Ubuntu operating system (tested on Ubuntu 20.04), run the following:
+1. (git init &&) git clone https://github.com/thomaslplant/team3-final-project.git
+2. cd team3-final-project
+3. sh scripts/docker-install-linux.sh
+4. sh docker-compose-install-linux.sh
+5. docker-compose build
+6. docker-compose up
+
+In order to setup the Docker containers within a cluster of Kubernetes (EKS) pods and deploy the infrastructure using Terraform on AWS, run steps 1-5 above, followed by:
+1. sh scripts/awsconfigure.sh
+2. sh scripts/install-tf.sh
+3. aws configure [ENTER YOUR USER CREDENTIALS HERE]
+4. sh scripts/eksctl.sh
+5. Use AWS console to setup a VPC with subnets, an Internet Gateway, a NAT Gateway and configured route tables
+6. Amend the terraform/main.tf file to reflect the subnet_ids of the subnets in your VPC
+7. sh scripts/terraform.sh
+8. sh scripts/deployapp.sh
 
 ## What tools will be used?
 To complete this project to a high standard I will be using various programs, languages and systems and utilise all of the various tools that they offer. Some of which will be:  
