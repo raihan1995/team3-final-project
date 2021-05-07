@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Push'){
             steps{
-                sh 'docker-compose push'
+                sh 'sudo docker-compose push'
             }
         }
         stage('Terraform Configuration'){
