@@ -14,17 +14,17 @@ pipeline {
         }
         stage('Push'){
             steps{
-                echo 'sudo docker-compose push'
+                sh 'sudo docker-compose push'
             }
         }
         stage('Terraform Configuration'){
             steps{
-                echo 'bash ./scripts/terraform.sh'
+                sh 'bash scripts/terraform.sh'
             }
         }
         stage('Deploy App'){
             steps{ 
-                echo  'bash ./scripts/deployapp.sh' // sh 'bash ./scripts/deployapp.sh'
+                sh 'bash scripts/deployapp.sh'
             }
         }
     }
