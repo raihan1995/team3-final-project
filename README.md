@@ -67,6 +67,73 @@ By creating a pipeline diagram it allowed us to get a clearer understanding of w
 
 ![Pipeline](https://user-images.githubusercontent.com/79214361/117265214-e6a0a500-ae4b-11eb-8e54-070bf9cea9e4.png)
 
+## Cloud Infrastructure and Terraform
+![image](https://user-images.githubusercontent.com/79214015/117448059-28a61580-af36-11eb-8463-0feaec4cca82.png)
+
+![image](https://user-images.githubusercontent.com/79214015/117448146-45424d80-af36-11eb-9665-b294e5da7c62.png)
+
+Pictured above is a basic overview of our cloud infrastructure used to deploy the application. It consists of a single VPC, with two subnets, each in a different availability zone. Each subnet has a route table, with routes to the internet gateway, making them public subnets.
+The thinking behind the use of multiple availability zones was to allow greater connectivity to the application - less reliance on a single data center.
+
+With the above infrastructure deployed, we then deployed our cluster across the two public subnets.
+
+We used a CIDR block of 10.0.0.0/16 for our VPC, giving a range of 65534 hosts. These are divided up into smaller subnets with CIDR blocks of 10.0.1.0/24 and 10.0.2.0/24, resulting in 254 hosts in each subnet. Whilst this is small in scope, it can easily be scaled up to allow a greater number of hosts within each subnet.
+ 
+We then had our development / Jenkins machine in a separate VPC, from which we deployed the cluster. This setup is clearly not ideal, and in the next section, we discuss our ideal infrastructure configuration.
+
+### Ideal Cloud Infrastructure
+![image](https://user-images.githubusercontent.com/79214015/117448263-702ca180-af36-11eb-8b08-f0ef87edea6a.png)
+
+In an Ideal setup, we would have the whole deployment contained within a single VPC, split into multiple subnets:
+* Private subnet
+  * Has no routes connecting to the internet gateway.
+  * Communicates with the public subnet via the NAT gateway (Allowing one-way communication from private to public subnet).
+  * Contains any Jenkins / dev machines used to deploy the application.
+  * Has a Security group, only allowing specific ports, such as ports for SSH, Jenkins, and testing.
+* Public subnet
+  * Has a route table, with a direct route to the internet gateway, allowing access to the user.
+  * Contains the EKS cluster, and nodes running the application.
+  * Contains a separate Nginx load balancer machine, which distributes the load across the EKS nodes.
+  * Security group, that only allows connection to the ‘Nginx machine’ over port 80, making this the only way to access the app.
+
+### Terraform
+Terraform is an Orchestration tool that lets us define our AWS infrastructure as code.
+
+When deploying an application, a potential problem is that the tools and infrastructure used to implement that deployment may change over time. For instance, updates to AWS services, or other unforeseen changes. Over time, these changes can build up and cause the deployment to fail. This problem, known as environment drift, is avoided by using Orchestration tools such as Terraform which let us implement immutable infrastructure.
+
+Terraform lets us describe our desired cloud infrastructure in a declarative manner, and when applied, configures the infrastructure exactly as specified.
+
+We use terraform to set up the following:
+* Set up roles and policies for cluster.
+* Set up EKS cluster.
+* Setup roles and policies for node group
+* Setup EKS node group
+
+This approach is only a semi-automated configuration, as we are only using it to configure the Kubernetes cluster. Our initial attempts at full automation of cloud configuration were unsuccessful. As a result, we manually configured:
+
+* VPC
+* Two subnets
+* Two route tables
+* Two route table associations
+* Internet gateway
+* Elastic IPs
+* NAT gateways
+* Security group
+* External Nginx Machine
+
+Our attempts to configure the above can be found in the ‘Terraform-Failed-Attempt’ folder.
+
+### Costing
+
+![image](https://user-images.githubusercontent.com/79214015/117450162-c7cc0c80-af38-11eb-838b-0e41336503f8.png)
+
+
+*ubuntu t3.medium, on demand instances, in eu-west-2 region 
+
+* Total monthly cost of $178.41
+* Note:
+  * This is a small-scale deployment; larger scale deployments will cost more.
+  * This Deployment does not make use of an AWS-managed database, which would increase the costs more.
 
 ## Testing
 ### Backend Testing:
